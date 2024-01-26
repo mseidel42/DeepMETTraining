@@ -6,9 +6,10 @@ First install the necessary packages with [MiniConda](https://docs.conda.io/en/l
 conda create -n METTraining python=3.7
 conda install -n METTraining numpy h5py
 conda install -n METTraining progressbar2
-conda install -n METTraining uproot
+conda install -n METTraining conda-forge::uproot
 conda install -n METTraining matplotlib pandas scikit-learn
 conda install -n METTraining tensorflow-gpu=1.13.1 keras=2.2.4
+conda install pydot
 ```
 and activate the environment
 ```

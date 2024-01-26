@@ -82,7 +82,7 @@ tree = upfile['Delphes'].arrays( varList )
 
 # general setup
 maxNPF = 4500
-nFeatures = 12
+nFeatures = 14
 
 maxEntries = len(tree[b'PuppiParticles_size']) if opt.maxevents==-1 else opt.maxevents
 # input PF candidates
@@ -125,14 +125,16 @@ for e in progressbar.progressbar(range(maxEntries), widgets=widgets):
         pf[6] = tree[b'PuppiParticles.DZ'][e][j]
         pf[7] = tree[b'PuppiParticles.PuppiWeight'][e][j]
         pf[8] = tree[b'PuppiParticles.Mass'][e][j]
+        pf[9] = 0
+        pf[10] = 0
         # encoding
-        pf[9]  = d_encoding[b'PuppiParticles.PID'][tree[b'PuppiParticles.PID'][e][j]]
-        pf[10] = d_encoding[b'PuppiParticles.Charge'][tree[b'PuppiParticles.Charge'][e][j]]
-        pf[11] = 1. if tree[b'PuppiParticles.VertexIndex'][e][j] == 0 else 0.
+        pf[11]  = d_encoding[b'PuppiParticles.PID'][tree[b'PuppiParticles.PID'][e][j]]
+        pf[12] = d_encoding[b'PuppiParticles.Charge'][tree[b'PuppiParticles.Charge'][e][j]]
+        pf[13] = 1. if tree[b'PuppiParticles.VertexIndex'][e][j] == 0 else 0.
         # set pion and kaon masses for charged/neutral hadrons
-        if pf[9] in [0, 8]:
+        if pf[11] in [0, 8]:
             pf[8] = 0.140
-        elif pf[9] == 0:
+        elif pf[11] == 0:
             pf[8] = 0.498
 
     # truth info
